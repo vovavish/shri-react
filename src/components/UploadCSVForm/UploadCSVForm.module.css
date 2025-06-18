@@ -1,0 +1,13 @@
+.container {
+  margin: 0 40px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button {
+  align-self: center;
+}

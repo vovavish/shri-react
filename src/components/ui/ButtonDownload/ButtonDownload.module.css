@@ -1,0 +1,54 @@
+.button_download__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.button_download {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  border-radius: 25px;
+  padding: 15px 27px;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 110%;
+}
+
+.initial {
+  background-color: var(--green);
+  cursor: pointer;
+  height: 80px;
+  font-weight: 500;
+}
+
+.loading {
+  width: 402px;
+  border-radius: 10px;
+  background-color: var(--purple);
+}
+
+.success {
+  border-radius: 10px;
+  background-color: var(--green-light);
+}
+
+.error {
+  border-radius: 10px;
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.message {
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 110%;
+  text-align: center;
+}
+
+.error_message {
+  color: var(--orange);
+}

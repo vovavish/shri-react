@@ -1,0 +1,26 @@
+.button {
+  border: none;
+  border-radius: 25px;
+  padding: 20.5px 27px;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 110%;
+  cursor: pointer;
+}
+
+.button[disabled] {
+  color: var(--disabled-button-color);
+  background-color: var(--disabled-button-background-color);
+  cursor: not-allowed;
+}
+
+.send {
+  color: var(--black);
+  background-color: var(--green);
+}
+
+.clear {
+  color: var(--white);
+  background-color: var(--black);
+}

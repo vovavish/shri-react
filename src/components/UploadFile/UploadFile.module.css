@@ -1,0 +1,30 @@
+.file_label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 40px;
+  padding: 60px 0;
+}
+
+.file_label_base {
+  background-color: var(--purple-light);
+}
+
+.file_label_choosing {
+  background-color: var(--green-light);
+}
+
+.file_label_uploaded {
+  border: 1px solid var(--black);
+}
+
+.file_label_error {
+  border: 1px solid var(--orange);
+}
+
+.file_label__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}

@@ -1,0 +1,18 @@
+.empty_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 407px;
+  color: var(--purple);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 110%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 40px;
+  gap: 10px 39px;
+}
