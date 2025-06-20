@@ -9,3 +9,11 @@ export interface Report {
   big_spent_civ: 'humans' | 'blobs' | 'monsters';
   less_spent_civ: 'humans' | 'blobs' | 'monsters';
 }
+
+export interface SavedReport {
+  report: Report;
+  date: string;
+  id: string;
+  isFailed: boolean;
+  fileName: string;
+}

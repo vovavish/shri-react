@@ -4,9 +4,16 @@
   align-items: center;
   gap: 5px;
   width: 100%;
-  background-color: var(--white);
   border-radius: 24px;
   padding: 21px 0;
+}
+
+.white {
+  background-color: var(--white);
+}
+
+.purple {
+  background-color: var(--purple-light);
 }
 
 .value {

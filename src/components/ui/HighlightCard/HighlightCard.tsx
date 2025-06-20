@@ -1,13 +1,16 @@
+import classNames from 'classnames';
+
 import { ReportService } from '../../../services/ReportService';
 import styles from './HighlightCard.module.css';
 
-interface HighlightCardProps {
+export interface HighlightCardProps {
   value: string | number;
   description: string;
   isDayOfYear?: boolean;
+  variant: 'white' | 'purple';
 }
 
-export const HighlightCard = ({ value, description, isDayOfYear }: HighlightCardProps) => {
+export const HighlightCard = ({ value, description, isDayOfYear, variant }: HighlightCardProps) => {
   let day = 0;
   let month = '';
 
@@ -18,7 +21,7 @@ export const HighlightCard = ({ value, description, isDayOfYear }: HighlightCard
   }
 
   return (
-    <div className={styles.container}>
+    <div className={classNames(styles.container, styles[variant])}>
       <div className={styles.value}>
         {isDayOfYear ? (
           <span>

@@ -32,7 +32,7 @@ export const GeneratorPage = () => {
       setButtonVariant('success');
       return;
     }
-  }, [isReportGenerating, isReportGeneratingError]);
+  }, [isReportGenerating, isReportGeneratingError, isReportGeneratingSuccess]);
 
   return (
     <div>

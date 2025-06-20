@@ -26,7 +26,7 @@ export const Header = () => {
                   : styles.nav_list__link
               }
             >
-              <img src={upload} className={styles.nav_list__link_img}/>
+              <img src={upload} className={styles.nav_list__link_img} />
               <div>CSV Аналитик</div>
             </NavLink>
           </li>
@@ -43,7 +43,7 @@ export const Header = () => {
                   : classNames(styles.nav_list__link, styles.nav_list__link_more_space)
               }
             >
-              <img src={generator} className={styles.nav_list__link_img}/>
+              <img src={generator} className={styles.nav_list__link_img} />
               <div>CSV Генератор</div>
             </NavLink>
           </li>
@@ -56,7 +56,7 @@ export const Header = () => {
                   : styles.nav_list__link
               }
             >
-              <img src={history} className={styles.nav_list__link_img}/>
+              <img src={history} className={styles.nav_list__link_img} />
               <div>История</div>
             </NavLink>
           </li>

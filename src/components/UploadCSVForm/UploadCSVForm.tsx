@@ -1,20 +1,19 @@
-import { useState } from 'react';
-
 import { Title } from '../ui/Title';
 import { BoldText } from '../ui/BoldText';
 import { Button } from '../ui/Button';
 
-import styles from './UploadCSVForm.module.css';
 import { UploadFile } from '../UploadFile';
 import { useStore } from '../../store';
 
-export const UploadCSVForm = () => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+import styles from './UploadCSVForm.module.css';
 
+export const UploadCSVForm = () => {
   const aggregateReport = useStore((store) => store.aggregateReport);
   const isReportLoading = useStore((store) => store.isReportLoading);
   const isReportError = useStore((store) => store.isReportError);
   const isReportSuccess = useStore((store) => store.isReportSuccess);
+
+  const csvFile = useStore((store) => store.csvFile);
 
   return (
     <div className={styles.container}>
@@ -23,16 +22,16 @@ export const UploadCSVForm = () => {
         нём за сверхнизкое время
       </Title>
       <form className={styles.form}>
-        <UploadFile selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
+        <UploadFile />
         {isReportError || isReportLoading || isReportSuccess ? null : (
           <Button
             variant="send"
             type="button"
             className={styles.button}
-            disabled={!selectedFile}
+            disabled={!csvFile}
             onClick={() => {
-              if (selectedFile) {
-                aggregateReport(selectedFile, 10000);
+              if (csvFile) {
+                aggregateReport(csvFile, 10000);
               }
             }}
           >

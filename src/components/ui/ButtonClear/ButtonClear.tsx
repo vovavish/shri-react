@@ -1,14 +1,17 @@
+import classNames from 'classnames';
+
 import clear from '../../../assets/clear.svg';
 
 import styles from './ButtonClear.module.css';
 
 interface ButtonClearProps {
   onClick?: () => void;
+  className?: string;
 }
 
-export const ButtonClear = ({ onClick }: ButtonClearProps) => {
+export const ButtonClear = ({ onClick, className }: ButtonClearProps) => {
   return (
-    <button className={styles.button_clear} onClick={onClick} type="button">
+    <button className={classNames(styles.button_clear, className)} onClick={onClick} type="button">
       <img src={clear} />
     </button>
   );

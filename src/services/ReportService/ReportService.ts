@@ -1,5 +1,5 @@
 import { ReportAPI } from '../../api/ReportAPI';
-import type { Report } from '../../types/Report';
+import type { Report, SavedReport } from '../../types/Report';
 
 export const ReportService = {
   getReport: async (onSuccess?: () => void, onError?: () => void) => {
@@ -24,7 +24,7 @@ export const ReportService = {
       window.URL.revokeObjectURL(url);
 
       onSuccess?.();
-    } catch (error) {
+    } catch {
       onError?.();
     }
   },
@@ -36,27 +36,36 @@ export const ReportService = {
     onSuccess?: () => void,
     onError?: () => void,
   ) => {
-    const reader = await ReportAPI.aggregate(file, rows);
+    try {
+      const reader = await ReportAPI.aggregate(file, rows);
 
-    const decoder = new TextDecoder('utf-8');
-
-    while (true) {
-      const { value, done } = await reader.read();
-
-      if (done) {
-        break;
+      if (!reader) {
+        throw new Error('No reader');
       }
 
-      const chunk = decoder.decode(value);
-      const aggregateJSON = JSON.parse(chunk) as Report;
+      const decoder = new TextDecoder('utf-8');
 
-      if (!ReportService.isValidReport(aggregateJSON)) {
-        reader.cancel();
-        onError?.();
-        return;
+      while (true) {
+        const { value, done } = await reader.read();
+
+        if (done) {
+          break;
+        }
+
+        const chunk = decoder.decode(value);
+        const splittedChunk = chunk.split('\n').filter((item) => item);
+
+        const aggregateJSON = JSON.parse(splittedChunk[splittedChunk.length - 1]) as Report;
+        if (!ReportService.isValidReport(aggregateJSON)) {
+          reader.cancel();
+          throw new Error('Invalid report');
+        }
+
+        onData(aggregateJSON);
       }
-
-      onData(aggregateJSON);
+    } catch {
+      onError?.();
+      return;
     }
 
     onSuccess?.();
@@ -101,21 +110,53 @@ export const ReportService = {
     return monthNamesGenitive[month - 1] || '';
   },
 
-  saveReport: (report: Report, isFailed: boolean) => {
+  saveReport: (report: Report, fileName: string, isFailed: boolean) => {
     const reports = localStorage.getItem('reports');
+
+    const currentDate = new Date();
+
+    const dateToSave = currentDate.toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    });
+
+    const reportToSave: SavedReport = {
+      id: Date.now().toString() + Math.random().toString(16).slice(2),
+      report,
+      fileName,
+      isFailed,
+      date: dateToSave,
+    };
 
     if (reports) {
       const reportsArray = JSON.parse(reports);
-      reportsArray.push({ report, isFailed });
+      reportsArray.push(reportToSave);
       localStorage.setItem('reports', JSON.stringify(reportsArray));
       return;
     }
 
-    localStorage.setItem('reports', JSON.stringify([{ report, isFailed }]));
+    localStorage.setItem('reports', JSON.stringify([reportToSave]));
   },
 
-  getReports: () => {
+  getReports: (): SavedReport[] => {
     const reports = localStorage.getItem('reports');
     return reports ? JSON.parse(reports).reverse() : [];
+  },
+
+  clearReports: () => {
+    localStorage.removeItem('reports');
+  },
+
+  removeReportById: (id: string) => {
+    const reports = localStorage.getItem('reports');
+
+    if (reports) {
+      const reportsArray = JSON.parse(reports);
+      const filteredReports = reportsArray.filter(
+        (savedReport: SavedReport) => savedReport.id !== id,
+      );
+      localStorage.setItem('reports', JSON.stringify(filteredReports));
+    }
   },
 };

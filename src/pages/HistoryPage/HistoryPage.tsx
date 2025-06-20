@@ -1,7 +1,37 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useStore } from '../../store';
+
+import { ReportsHistory } from '../../components/ReportsHistory';
+import { Button } from '../../components/ui/Button';
+
+import styles from './HistoryPage.module.css';
+
 export const HistoryPage = () => {
+  const navigate = useNavigate();
+
+  const clearSavedReports = useStore((store) => store.clearSavedReports);
+  const savedReports = useStore((store) => store.savedReports);
+  const loadSavedReports = useStore((store) => store.loadSavedReports);
+
+  useEffect(() => {
+    loadSavedReports();
+  }, [loadSavedReports]);
+
   return (
-    <div>
-      <h1>History Page</h1>
+    <div className={styles.container}>
+      {savedReports.length > 0 && <ReportsHistory />}
+      <div className={styles.buttons}>
+        <Button variant="send" onClick={() => navigate('/')}>
+          Сгенерировать больше
+        </Button>
+        {savedReports.length > 0 && (
+          <Button variant="clear" onClick={clearSavedReports}>
+            Очистить всё
+          </Button>
+        )}
+      </div>
     </div>
   );
 };
