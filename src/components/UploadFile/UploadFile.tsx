@@ -19,6 +19,7 @@ export const UploadFile = () => {
   const isReportSuccess = useStore((store) => store.isReportSuccess);
 
   const csvFile = useStore((store) => store.csvFile);
+  const setIsReportError = useStore((store) => store.setIsReportError);
   const setCsvFile = useStore((store) => store.setCsvFile);
 
   useEffect(() => {
@@ -96,11 +97,15 @@ export const UploadFile = () => {
     }
 
     const file = event.dataTransfer.files[0];
+
+    setCsvFile(event.dataTransfer.files[0]);
+
     if (file.type !== 'text/csv') {
+      setButtonVariant('error');
+      setIsReportError(true);
       return;
     }
 
-    setCsvFile(event.dataTransfer.files[0]);
     setButtonVariant('loaded');
   };
 
@@ -110,7 +115,7 @@ export const UploadFile = () => {
         [styles.file_label_uploaded]: csvFile,
         [styles.file_label_choosing]: !csvFile && isDragOver,
         [styles.file_label_base]: !csvFile && !isDragOver,
-        [styles.file_label_error]: isReportError,
+        [styles.file_label_error]: isReportError || buttonVariant === 'error',
       })}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}

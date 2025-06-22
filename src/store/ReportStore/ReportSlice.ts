@@ -17,8 +17,10 @@ export interface ReportSlice {
   savedReports: SavedReport[];
 
   setCsvFile: (file: File | null) => void;
+  setIsReportError: (isReportError: boolean) => void;
   aggregateReport: (file: File, rows: number) => void;
   resetReport: () => void;
+  resetReportGenerating: () => void;
   getReport: () => void;
   loadSavedReports: () => void;
   clearSavedReports: () => void;
@@ -39,6 +41,7 @@ export const createReportSlice: StateCreator<ReportSlice> = (set, get) => ({
   savedReports: [],
 
   setCsvFile: (file) => set({ csvFile: file }),
+  setIsReportError: (isReportError) => set({ isReportError: isReportError }),
 
   aggregateReport: (file, rows) => {
     set({ isReportLoading: true });
@@ -63,6 +66,11 @@ export const createReportSlice: StateCreator<ReportSlice> = (set, get) => ({
       isReportLoading: false,
       isReportError: false,
       isReportSuccess: false,
+    });
+  },
+
+  resetReportGenerating: () => {
+    set({
       isReportGenerating: false,
       isReportGeneratingError: false,
       isReportGeneratingSuccess: false,

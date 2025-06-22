@@ -23,7 +23,7 @@ export const HistoryPage = () => {
     <div className={styles.container}>
       {savedReports.length > 0 && <ReportsHistory />}
       <div className={styles.buttons}>
-        <Button variant="send" onClick={() => navigate('/')}>
+        <Button variant="send" onClick={() => navigate('/generator')}>
           Сгенерировать больше
         </Button>
         {savedReports.length > 0 && (

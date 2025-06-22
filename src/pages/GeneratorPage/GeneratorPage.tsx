@@ -10,7 +10,7 @@ import { Title } from '../../components/ui/Title';
 
 export const GeneratorPage = () => {
   const getReport = useStore((store) => store.getReport);
-  const resetReport = useStore((store) => store.resetReport);
+  const resetReportGenerating = useStore((store) => store.resetReportGenerating);
   const isReportGenerating = useStore((store) => store.isReportGenerating);
   const isReportGeneratingError = useStore((store) => store.isReportGeneratingError);
   const isReportGeneratingSuccess = useStore((store) => store.isReportGeneratingSuccess);
@@ -41,7 +41,7 @@ export const GeneratorPage = () => {
         variant={buttonVariant}
         onClick={() => !isReportGenerating && !isReportGeneratingError && getReport()}
         onClearClick={() => {
-          resetReport();
+          resetReportGenerating();
           setButtonVariant('initial');
         }}
       />

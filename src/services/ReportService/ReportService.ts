@@ -1,10 +1,12 @@
-import { ReportAPI } from '../../api/ReportAPI';
+import { ReportAPI } from '../../api/ReportApi';
+import { ReportStorageAPI } from '../../api/ReportStorageAPI';
+
 import type { Report, SavedReport } from '../../types/Report';
 
 export const ReportService = {
   getReport: async (onSuccess?: () => void, onError?: () => void) => {
     try {
-      const response = await ReportAPI.getReport(0.5, 'on', 1000);
+      const response = await ReportAPI.getReport(0.1, 'on', 1000);
 
       if (!response.ok) {
         const error = await response.text();
@@ -111,52 +113,18 @@ export const ReportService = {
   },
 
   saveReport: (report: Report, fileName: string, isFailed: boolean) => {
-    const reports = localStorage.getItem('reports');
-
-    const currentDate = new Date();
-
-    const dateToSave = currentDate.toLocaleDateString('ru-RU', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    });
-
-    const reportToSave: SavedReport = {
-      id: Date.now().toString() + Math.random().toString(16).slice(2),
-      report,
-      fileName,
-      isFailed,
-      date: dateToSave,
-    };
-
-    if (reports) {
-      const reportsArray = JSON.parse(reports);
-      reportsArray.push(reportToSave);
-      localStorage.setItem('reports', JSON.stringify(reportsArray));
-      return;
-    }
-
-    localStorage.setItem('reports', JSON.stringify([reportToSave]));
+    ReportStorageAPI.saveReport(report, fileName, isFailed);
   },
 
   getReports: (): SavedReport[] => {
-    const reports = localStorage.getItem('reports');
-    return reports ? JSON.parse(reports).reverse() : [];
+    return ReportStorageAPI.getReports();
   },
 
   clearReports: () => {
-    localStorage.removeItem('reports');
+    ReportStorageAPI.clearReports();
   },
 
   removeReportById: (id: string) => {
-    const reports = localStorage.getItem('reports');
-
-    if (reports) {
-      const reportsArray = JSON.parse(reports);
-      const filteredReports = reportsArray.filter(
-        (savedReport: SavedReport) => savedReport.id !== id,
-      );
-      localStorage.setItem('reports', JSON.stringify(filteredReports));
-    }
+    ReportStorageAPI.removeReportById(id);
   },
 };

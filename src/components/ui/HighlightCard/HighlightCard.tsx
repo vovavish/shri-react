@@ -7,10 +7,17 @@ export interface HighlightCardProps {
   value: string | number;
   description: string;
   isDayOfYear?: boolean;
+  isNeedRound?: boolean;
   variant: 'white' | 'purple';
 }
 
-export const HighlightCard = ({ value, description, isDayOfYear, variant }: HighlightCardProps) => {
+export const HighlightCard = ({
+  value,
+  description,
+  isDayOfYear,
+  isNeedRound,
+  variant,
+}: HighlightCardProps) => {
   let day = 0;
   let month = '';
 
@@ -27,6 +34,8 @@ export const HighlightCard = ({ value, description, isDayOfYear, variant }: High
           <span>
             {day} {month}
           </span>
+        ) : isNeedRound ? (
+          Math.round(Number(value))
         ) : (
           value
         )}
