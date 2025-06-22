@@ -88,8 +88,8 @@ export const ReportService = {
   },
 
   getDayOfMonthFromReportDayOfYear: (dayOfYear: number) => {
-    const date = new Date(2025, 0, 0);
-    date.setDate(dayOfYear);
+    const date = new Date(2025, 0, 1);
+    date.setDate(date.getDate() + dayOfYear);
     return { day: date.getDate(), month: ReportService.getMonthName(date.getMonth() + 1) };
   },
 

@@ -38,6 +38,11 @@ export const UploadFile = () => {
       return;
     }
 
+    if (csvFile) {
+      setButtonVariant('loaded');
+      return;
+    }
+
     setButtonVariant('initial');
   }, [isReportLoading, isReportError, isReportSuccess]);
 
