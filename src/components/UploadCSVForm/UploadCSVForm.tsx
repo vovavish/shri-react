@@ -17,7 +17,7 @@ export const UploadCSVForm = () => {
 
   return (
     <div className={styles.container}>
-      <Title>
+      <Title data-testid="title">
         Загрузите <BoldText>csv</BoldText> файл и получите <BoldText>полную информацию</BoldText> о
         нём за сверхнизкое время
       </Title>
@@ -34,6 +34,7 @@ export const UploadCSVForm = () => {
                 aggregateReport(csvFile, 10000);
               }
             }}
+            data-testid="button-send"
           >
             Отправить
           </Button>

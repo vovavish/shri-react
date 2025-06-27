@@ -16,6 +16,8 @@
   font-weight: 400;
   font-size: 35px;
   line-height: 110%;
+  border: none;
+  font-family: inherit;
 }
 
 .initial {

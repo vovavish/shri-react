@@ -35,8 +35,8 @@ export const GeneratorPage = () => {
   }, [isReportGenerating, isReportGeneratingError, isReportGeneratingSuccess]);
 
   return (
-    <div>
-      <Title>Сгенерируйте готовый csv-файл нажатием одной кнопки</Title>
+    <div data-testid="generator-page">
+      <Title data-testid="title">Сгенерируйте готовый csv-файл нажатием одной кнопки</Title>
       <ButtonDownload
         variant={buttonVariant}
         onClick={() => !isReportGenerating && !isReportGeneratingError && getReport()}
@@ -44,6 +44,7 @@ export const GeneratorPage = () => {
           resetReportGenerating();
           setButtonVariant('initial');
         }}
+        data-testid="button"
       />
     </div>
   );

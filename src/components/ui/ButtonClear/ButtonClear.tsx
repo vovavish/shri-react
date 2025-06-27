@@ -9,9 +9,9 @@ interface ButtonClearProps {
   className?: string;
 }
 
-export const ButtonClear = ({ onClick, className }: ButtonClearProps) => {
+export const ButtonClear = ({ onClick, className, ...rest }: ButtonClearProps) => {
   return (
-    <button className={classNames(styles.button_clear, className)} onClick={onClick} type="button">
+    <button {...rest} className={classNames(styles.button_clear, className)} onClick={onClick} type="button">
       <img src={clear} />
     </button>
   );

@@ -27,14 +27,21 @@ export const ButtonDownload = ({
   onClick,
   onClearClick,
   variant = 'initial',
+  ...rest
 }: ButtonDownloadProps) => {
   return (
-    <div>
+    <div data-variant={variant}>
       <div className={styles.button_download__wrapper}>
-        <div className={classNames(styles.button_download, styles[variant])} onClick={onClick}>
+        <button
+          {...rest}
+          className={classNames(styles.button_download, styles[variant])}
+          onClick={onClick}
+        >
           {variant === 'loading' ? <Spinner /> : buttonText[variant]}
-        </div>
-        {['success', 'error'].includes(variant) && <ButtonClear onClick={onClearClick} />}
+        </button>
+        {['success', 'error'].includes(variant) && (
+          <ButtonClear data-testid="button-clear" onClick={onClearClick} />
+        )}
       </div>
       {message[variant] && (
         <div

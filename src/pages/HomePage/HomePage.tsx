@@ -5,7 +5,7 @@ import styles from './HomePage.module.css';
 
 export const HomePage = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="home-page">
       <UploadCSVForm />
       <Highlights />
     </div>

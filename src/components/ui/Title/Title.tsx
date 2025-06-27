@@ -7,6 +7,10 @@ interface TitleProps {
   children: React.ReactNode;
 }
 
-export const Title = ({ className, children }: TitleProps) => {
-  return <div className={classNames(styles.page_title, className)}>{children}</div>;
+export const Title = ({ className, children, ...rest }: TitleProps) => {
+  return (
+    <div {...rest} className={classNames(styles.page_title, className)}>
+      {children}
+    </div>
+  );
 };

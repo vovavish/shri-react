@@ -1,6 +1,6 @@
 import type { Report, SavedReport } from '../../types/Report';
 
-const STORAGE_KEY = 'reports';
+export const STORAGE_KEY = 'reports';
 
 export const ReportStorageAPI = {
   saveReport: (report: Report, fileName: string, isFailed: boolean) => {

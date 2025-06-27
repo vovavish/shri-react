@@ -20,7 +20,7 @@ export const HistoryPage = () => {
   }, [loadSavedReports]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="history-page">
       {savedReports.length > 0 && <ReportsHistory />}
       <div className={styles.buttons}>
         <Button variant="send" onClick={() => navigate('/generator')}>
