@@ -38,6 +38,7 @@ export const HighlightsBase = ({ report, order, variant }: HighlightsBaseProps) 
           isDayOfYear={reportData[key as keyof Report]?.isDayOfYear}
           isNeedRound={reportData[key as keyof Report]?.isNeedRound}
           variant={variant}
+          data-testid={`highlight-${key}`}
         />
       ))}
     </>

@@ -6,7 +6,7 @@ import type { Report, SavedReport } from '../../types/Report';
 export const ReportService = {
   getReport: async (onSuccess?: () => void, onError?: () => void) => {
     try {
-      const response = await ReportAPI.getReport(0.1, 'on', 1000);
+      const response = await ReportAPI.getReport(0.01, 'on', 1000);
 
       if (!response.ok) {
         const error = await response.text();

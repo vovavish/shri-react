@@ -14,9 +14,9 @@ interface SavedReportProps {
   onOpenReport: () => void;
 }
 
-export const SavedReport = ({ savedReport, onDelete, onOpenReport }: SavedReportProps) => {
+export const SavedReport = ({ savedReport, onDelete, onOpenReport, ...rest }: SavedReportProps) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} {...rest}>
       <div
         className={classNames(
           styles.report_container,
@@ -71,7 +71,7 @@ export const SavedReport = ({ savedReport, onDelete, onOpenReport }: SavedReport
           </div>
         </div>
       </div>
-      <ButtonDelete onClick={onDelete} />
+      <ButtonDelete data-testid={`button-delete-${savedReport.id}`} onClick={onDelete} />
     </div>
   );
 };

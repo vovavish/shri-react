@@ -21,7 +21,7 @@ export const UploadCSVForm = () => {
         Загрузите <BoldText>csv</BoldText> файл и получите <BoldText>полную информацию</BoldText> о
         нём за сверхнизкое время
       </Title>
-      <form className={styles.form}>
+      <form className={styles.form} data-testid="form">
         <UploadFile />
         {isReportError || isReportLoading || isReportSuccess ? null : (
           <Button

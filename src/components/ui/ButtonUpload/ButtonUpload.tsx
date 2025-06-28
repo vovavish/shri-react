@@ -28,7 +28,7 @@ export const ButtonUpload = ({
 }: ButtonUploadProps) => {
   return (
     <div>
-      <div className={styles.button_upload__wrapper}>
+      <div data-variant={variant} className={styles.button_upload__wrapper}>
         <div
           className={classNames(styles.button_upload, styles[variant])}
           onClick={() => {
@@ -45,7 +45,7 @@ export const ButtonUpload = ({
             selectedFileName
           )}
         </div>
-        {['loaded', 'success', 'error'].includes(variant) && <ButtonClear onClick={onClearClick} />}
+        {['loaded', 'success', 'error'].includes(variant) && <ButtonClear data-testid="button-clear" onClick={onClearClick} />}
       </div>
       <div className={classNames(styles.message, variant === 'error' ? styles.error_message : {})}>
         {message[variant]}

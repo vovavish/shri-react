@@ -10,7 +10,7 @@ export const Highlights = () => {
 
   if (!currentReport || isReportError) {
     return (
-      <div className={styles.empty_container}>
+      <div className={styles.empty_container} data-testid="empty-highlights">
         <div>Здесь</div>
         <div>появятся хайлайты</div>
       </div>
@@ -18,7 +18,7 @@ export const Highlights = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="highlights">
       <HighlightsBase
         report={currentReport}
         order={[

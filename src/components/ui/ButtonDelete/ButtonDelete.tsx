@@ -6,9 +6,9 @@ interface ButtonDeleteProps {
   onClick?: () => void;
 }
 
-export const ButtonDelete = ({ onClick }: ButtonDeleteProps) => {
+export const ButtonDelete = ({ onClick, ...rest }: ButtonDeleteProps) => {
   return (
-    <button className={styles.button_delete} onClick={onClick}>
+    <button {...rest} className={styles.button_delete} onClick={onClick}>
       <img src={trash} alt="Удалить" />
     </button>
   );

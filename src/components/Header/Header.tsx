@@ -10,7 +10,7 @@ import styles from './Header.module.css';
 
 export const Header = () => {
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-testid="header">
       <div className={styles.logo_wrapper}>
         <img src={logo} alt="Логотип" />
         <div className={styles.logo_title}>Межгалактическая аналитика</div>
@@ -25,6 +25,7 @@ export const Header = () => {
                   ? classNames(styles.nav_list__link, styles.nav_list__link_active)
                   : styles.nav_list__link
               }
+              data-testid="home-link"
             >
               <img src={upload} className={styles.nav_list__link_img} />
               <div>CSV Аналитик</div>
@@ -42,6 +43,7 @@ export const Header = () => {
                     )
                   : classNames(styles.nav_list__link, styles.nav_list__link_more_space)
               }
+              data-testid="generator-link"
             >
               <img src={generator} className={styles.nav_list__link_img} />
               <div>CSV Генератор</div>
@@ -55,6 +57,7 @@ export const Header = () => {
                   ? classNames(styles.nav_list__link, styles.nav_list__link_active)
                   : styles.nav_list__link
               }
+              data-testid="history-link"
             >
               <img src={history} className={styles.nav_list__link_img} />
               <div>История</div>

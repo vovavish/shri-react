@@ -22,7 +22,7 @@ export const ReportsHistory = () => {
       <Modal isModalOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {selectedReport?.report && <SavedReportHighlights report={selectedReport.report} />}
       </Modal>
-      <div className={styles.container}>
+      <div className={styles.container} data-testid="reports-history">
         {savedReports.map((report) => (
           <SavedReport
             key={report.id}
@@ -36,6 +36,7 @@ export const ReportsHistory = () => {
                 setSelectedReport(report);
               }
             }}
+            data-testid={`saved-report-${report.id}`}
           />
         ))}
       </div>

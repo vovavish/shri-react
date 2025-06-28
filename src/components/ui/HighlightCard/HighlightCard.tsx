@@ -17,6 +17,7 @@ export const HighlightCard = ({
   isDayOfYear,
   isNeedRound,
   variant,
+  ...rest
 }: HighlightCardProps) => {
   let day = 0;
   let month = '';
@@ -28,7 +29,7 @@ export const HighlightCard = ({
   }
 
   return (
-    <div className={classNames(styles.container, styles[variant])}>
+    <div {...rest} className={classNames(styles.container, styles[variant])}>
       <div className={styles.value}>
         {isDayOfYear ? (
           <span>

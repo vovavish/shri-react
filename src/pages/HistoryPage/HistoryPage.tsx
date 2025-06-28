@@ -23,11 +23,11 @@ export const HistoryPage = () => {
     <div className={styles.container} data-testid="history-page">
       {savedReports.length > 0 && <ReportsHistory />}
       <div className={styles.buttons}>
-        <Button variant="send" onClick={() => navigate('/generator')}>
+        <Button data-testid="button-generate-more" variant="send" onClick={() => navigate('/generator')}>
           Сгенерировать больше
         </Button>
         {savedReports.length > 0 && (
-          <Button variant="clear" onClick={clearSavedReports}>
+          <Button data-testid="button-clear" variant="clear" onClick={clearSavedReports}>
             Очистить всё
           </Button>
         )}

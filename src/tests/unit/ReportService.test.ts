@@ -15,6 +15,7 @@ describe('Тестирование сервиса отчетов (ReportService)
   beforeEach(() => {
     vi.restoreAllMocks();
   });
+  
   describe('получение отчета (getReport)', () => {
     let mockGetReport = vi.mocked(ReportAPI.getReport);
 
@@ -32,7 +33,6 @@ describe('Тестирование сервиса отчетов (ReportService)
       );
 
       mockGetReport.mockReturnValue(mockResponse);
-
       Object.defineProperty(window.URL, 'createObjectURL', {
         writable: true,
         value: vi.fn(() => 'mock-url'),
@@ -40,6 +40,15 @@ describe('Тестирование сервиса отчетов (ReportService)
       Object.defineProperty(window.URL, 'revokeObjectURL', {
         writable: true,
         value: vi.fn(),
+      });
+
+      const originalCreateElement = document.createElement.bind(document);
+      vi.spyOn(document, 'createElement').mockImplementation((tagName) => {
+        const element = originalCreateElement(tagName);
+        if (tagName === 'a') {
+          element.click = vi.fn();
+        }
+        return element;
       });
 
       const onSuccess = vi.fn();

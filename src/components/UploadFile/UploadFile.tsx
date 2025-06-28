@@ -127,6 +127,7 @@ export const UploadFile = () => {
       onDragOver={handleDragOver}
       onDrop={handleDrop}
       htmlFor=""
+      data-testid="label-file"
     >
       <input
         className={styles.file_label__input}
@@ -143,6 +144,7 @@ export const UploadFile = () => {
         }}
         ref={inputFileRef}
         disabled={buttonVariant !== 'initial'}
+        data-testid="input-file"
       />
       <ButtonUpload
         selectedFileName={csvFile?.name}

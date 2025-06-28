@@ -31,7 +31,7 @@ export const Modal = ({ isModalOpen, onClose, children }: ModalProps) => {
   }
 
   return createPortal(
-    <div className={styles.overlay}>
+    <div className={styles.overlay} data-testid="modal">
       <div className={styles.modal}>
         <ButtonClear onClick={onClose} className={styles.close_button}></ButtonClear>
         <div className={styles.content}>{children}</div>
